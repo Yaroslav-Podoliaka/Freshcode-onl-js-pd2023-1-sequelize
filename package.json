@@ -4,11 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js",
+    "mig": "npx sequelize-cli db:migrate",
+    "migun": "npx sequelize-cli db:migrate:undo",
+    "miguna": "npx sequelize-cli db:migrate:undo:all",
+    "dbcreate": "npx sequelize-cli db:create",
+    "dbdrop": "npx sequelize-cli db:drop"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.33.0"
