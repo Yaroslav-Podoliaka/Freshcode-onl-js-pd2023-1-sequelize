@@ -2,21 +2,15 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Book extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
       Book.belongsTo(models.Genre, { foreignKey: "genre_id" });
       Book.belongsTo(models.Shelf, { foreignKey: "shelf_id" });
       Book.belongsToMany(models.Author, {
-        through: "authors_books",
+        through: models.Authors_Books,
         // timestamps: false,
       });
       Book.belongsToMany(models.Order, {
-        through: "orders_books",
+        through: models.Orders_Books,
         // timestamps: false,
       });
     }

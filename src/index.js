@@ -3,6 +3,7 @@ const db = require("./db/models");
 
 (async function () {
   const {Sequelize: { Op }} = db;
+  // await db.sequelize.sync({force: true});
   const authors = [
     {
       full_name: "Ernest Hemingway",
@@ -36,15 +37,6 @@ const db = require("./db/models");
   // );
   // console.log(createdGenre);
 
-  // const national = await db.Nationality.create({
-  //   title: 'Ukraine',
-  // },
-  // {
-  //   raw: true,
-  //   returning: ['id', 'title'],
-  // });
-  // console.log('National Is', national);
-
   // BulkCreate;
   // await db.Author.bulkCreate(authors, {
   //   raw: true,
@@ -61,13 +53,6 @@ const db = require("./db/models");
   // });
 
   // Update
-  // const updatedAuthor = await db.Author.update(
-  //   {email: "ernest@gmail.com"},
-  //  {where: {
-  //   id: 1
-  // }});
-  // console.log(updatedAuthor);
-
   // const updatedAuthor = await db.Author.update(
   //   {email: "some@gmail.com"},
   // {where: {
@@ -98,14 +83,5 @@ const db = require("./db/models");
   //   raw: true,
   //   returning: ['title'],
   // });
-  // console.log(genres);
-  // await db.Order.sync({alter: true});
-  // await db.Customer.sync({alter: true});
-  // await db.Book.sync({alter: true});
-  // await db.Author.sync({alter: true});
-  // const [book1] = await db.Book.findAll({where: {
-  //   id: 3
-  // }});
-  // const genreByBookId = await book1.getGenre();
-  // console.log(genreByBookId);
+
 })();

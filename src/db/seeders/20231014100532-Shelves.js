@@ -1,4 +1,5 @@
 'use strict';
+const { Shelves } = require("../../constants/db-start-info");
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -12,6 +13,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+    await queryInterface.bulkInsert('Shelves', Shelves, {});
   },
 
   async down (queryInterface, Sequelize) {
@@ -21,5 +23,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete('Shelves', null, {});
   }
 };
