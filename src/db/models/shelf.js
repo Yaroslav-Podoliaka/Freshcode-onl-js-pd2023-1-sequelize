@@ -11,7 +11,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Shelf.init(
     {
-      title: DataTypes.STRING,
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       description: DataTypes.STRING,
     },
     {

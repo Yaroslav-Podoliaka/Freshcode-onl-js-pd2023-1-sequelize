@@ -12,15 +12,25 @@ module.exports = (sequelize, DataTypes) => {
   }
   Customer.init(
     {
-      full_name: DataTypes.STRING,
-      email: DataTypes.STRING,
-      phone: DataTypes.INTEGER,
-      // password: {
-      //   type: DataTypes.STRING,
-      //   set(value) {
-      //     this.setDataValue("password", bcrypt.hashSync(value, 10));
-      //   },
-      // },
+      full_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        unique: true,
+        validate: { isEmail: true },
+      },
+      phone: {
+        type: DataTypes.INTEGER,
+        unique: true,
+      },
+      password: {
+        type: DataTypes.STRING,
+        set(value) {
+          this.setDataValue("password", bcrypt.hashSync(value, 10));
+        },
+      },
     },
     {
       sequelize,

@@ -6,7 +6,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert("Genres", Genres, {});
   },
-  
+
   async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete("Genres", null, {});
   },

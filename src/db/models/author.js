@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Author.belongsTo(models.Nationality, { foreignKey: "nationality_id" });
       Author.belongsToMany(models.Book, {
-        through: models.Authors_Books,
+        through: models.Author_Book,
         // timestamps: false
       });
     }
@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-        validate: { is: /^[A-Z]+$/ },
+        // validate: { is: /^[A-Z]+$/ },
       },
       email: {
         type: DataTypes.STRING,
