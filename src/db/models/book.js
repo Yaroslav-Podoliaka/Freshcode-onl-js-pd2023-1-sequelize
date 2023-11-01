@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
       },
+      image:DataTypes.STRING,
       genre_id: {
         type: DataTypes.INTEGER,
         // defaultValue: 0,

@@ -8,5 +8,7 @@
   "20231008163034-create-book.js",
   "20231017181805-create-author-book.js",
   "20231017182004-create-order-book.js",
-  "20231021083715-add-password-customer.js"
+  "20231021083715-add-password-customer.js",
+  "20231028084606-add-image-book.js",
+  "20231030151603-add-avatar-customer.js"
 ]

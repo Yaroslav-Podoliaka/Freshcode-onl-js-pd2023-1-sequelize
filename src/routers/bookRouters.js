@@ -1,19 +1,23 @@
 import { Router } from "express";
 import bookCtrl from "../controllers/bookControllers";
-import { paginateBooks } from "../middleware/pagination.mw";
+import { paginate, validate, upload } from "../middleware";
 
 const bookRouter = new Router();
 
 bookRouter
   .route("/")
-  .get(paginateBooks, bookCtrl.getBooks)
-  .post(bookCtrl.createBook)
+  .get(paginate.paginateBooks, bookCtrl.getBooks)
+  .post(validate.validateNewBook, bookCtrl.createBook)
   .put(bookCtrl.updateBook);
 
 bookRouter
   .route("/:id")
   .get(bookCtrl.getBookById)
   .delete(bookCtrl.deleteBook)
-  .patch(bookCtrl.changePartOfBook);
+  .patch(validate.validatePatchedBook, bookCtrl.changePartOfBook);
+
+bookRouter
+  .route("/:id/images")
+  .patch(upload.uploadBookImage.single('bookImage'), bookCtrl.changeBookImage);
 
 export default bookRouter;

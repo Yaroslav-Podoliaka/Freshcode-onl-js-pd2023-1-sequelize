@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         unique: true,
       },
+      avatar: DataTypes.STRING,
       password: {
         type: DataTypes.STRING,
         set(value) {

@@ -3,13 +3,18 @@ import express from "express";
 import cors from "cors";
 import router from "./routers";
 const db = require("./db/models");
-const bcrypt = require("bcrypt");
+import { errorHandler } from "./middleware";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors());
+app.use(
+  errorHandler.validationErrorHandler,
+  errorHandler.sequelizeErrorHandler,
+  errorHandler.errorHandler
+);
 app.use("/api", router);
 
 const dbCheck = async () => {

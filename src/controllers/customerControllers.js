@@ -6,7 +6,7 @@ class CustomerController {
     try {
       const { limit, offset } = req.pagination;
       const allCustomers = await Customer.findAll({
-        attributes: ["id", "full_name", "email", "phone"],
+        attributes: ["id", "full_name", "email", "phone", 'password', 'avatar'],
         raw: true,
         limit,
         offset,
@@ -133,6 +133,38 @@ class CustomerController {
       });
       if (deletedCustomer) {
         res.send(res.statusCode);
+      } else {
+        next(createError(404, "This customer has not been found"));
+      }
+      await t.commit();
+    } catch (error) {
+      await t.rollback();
+      next(error.message);
+    }
+  }
+
+  async changeCustomerAvatar(req, res, next) {
+    const t = await sequelize.transaction();
+    const {
+      params: { id },
+      file: { filename },
+    } = req;
+    try {
+      const [updatedCustomersCount, [updatedCustomer]] = await Customer.update(
+        { avatar: filename },
+        {
+          where: {
+            id: id,
+          },
+          transaction: t,
+          raw: true,
+          returning: true,
+        }
+      );
+      if (updatedCustomersCount > 0) {
+        console.log(updatedCustomer);
+        console.log(filename);
+        res.status(200).json(updatedCustomer);
       } else {
         next(createError(404, "This customer has not been found"));
       }
