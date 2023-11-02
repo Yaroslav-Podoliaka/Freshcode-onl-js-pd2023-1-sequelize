@@ -39,7 +39,7 @@ const storageCustomerAvatar = multer.diskStorage({
 });
 
 const filterCustomerAvatar = (req, file, cb) => {
-  const MIMETYPE_REGEXP = /^avatar\/(jpeg|jpg|gif|png)$/;
+  const MIMETYPE_REGEXP = /^image\/(jpeg|jpg|gif|png)$/;
   if (MIMETYPE_REGEXP.test(file.mimetype)) {
     return cb(null, true);
   }
